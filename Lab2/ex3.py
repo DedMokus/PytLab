@@ -1,25 +1,18 @@
 import csv
-import random
+import operator
 
-names = ["Петров","Арефьев","Лебедев","Костин","Красавин","Трусов","Дегтев","Коротов","Криницкий","Павлов","Будин"]
-headings = ["Спортсмен","Кол-во побед","Доп. баллы"]
+data = []
+with open("players.csv","r",newline="") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        data.append(row)
 
-data = [[names[x] for x in range(len(names))],
-        [random.randint(1,10) for x in range(len(names))],
-        [random.randint(10,1000) for x in range(len(names))]]
+print(data)
 
-for i in range(3):
-    data[i].insert(0,headings[i])
+data = sorted(data, key = operator.itemgetter(1,2),reverse=True)
 
-tr_data = [[0 for j in range(len(data))] for i in range(len(data[0]))]
+print(data)
 
-
-for i in range(len(data)):
-    for j in range(len(data[0])):
-        tr_data[j][i] = data[i][j]
-
-with open("players.csv","w",newline="") as file:
+with open("results.csv","w",newline="") as file:
     writer = csv.writer(file)
-    writer.writerows(tr_data)
-
-
+    writer.writerows(data)
