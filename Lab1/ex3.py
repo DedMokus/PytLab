@@ -44,10 +44,11 @@ for i in range(n):
     #print("Data",data[i])
     preq = False
     #print("all",checkStr(data[i][1], data[i][2]))
-    while not(preq):
-        preq = checkStr(data[i][1],data[i][2])
-        if not(preq):
-            print("Format error!")
+    # while not(preq):
+    #     preq = checkStr(data[i][1],data[i][2])
+    #     if not(preq):
+    #         print("Format error!")
+    #         continue
     uniqAppend(users,data[i])
 
 print(users)
